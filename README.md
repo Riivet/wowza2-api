@@ -22,7 +22,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configure the api keys
+
+```ruby
+Wowza::Api.configure do |config|
+  config.api_key = 'api-key'
+  config.access_key = 'access-key'
+end
+```
+
+```ruby
+transcoder = Wowza::Api::Transcoder.retrieve('xyz')
+properties = transcoder.properties
+```
 
 ## Development
 

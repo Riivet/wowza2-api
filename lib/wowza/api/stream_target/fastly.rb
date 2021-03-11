@@ -3,6 +3,10 @@ class Wowza::Api::StreamTarget::Fastly < Wowza::Api::StreamTarget::Base
   DEFAULT_OPTIONS = {
   }
 
+  def playback_url
+    playback_urls['hls'].first['url']
+  end
+
   def self.list
     response = get('/stream_targets/fastly')
     if response['stream_targets_fastly']

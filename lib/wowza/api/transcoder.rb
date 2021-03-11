@@ -73,6 +73,10 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     response = post("/transcoders/#{id}/properties", property: data)
   end
 
+  def remove_property(section, key)
+    response = delete("/transcoders/#{id}/properties/#{section}-#{key}")
+  end
+
   def thumbnail
     response = get("/transcoders/#{id}/thumbnail_url")
     return response.dig('transcoder','thumbnail_url') if response.dig('transcoder')

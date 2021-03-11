@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Allows for riivet to user the wowza api across all microservices that might need it}
   spec.homepage      = "https://riivet.com"
 
-  spec.metadata["allowed_push_host"] = "https://git.riivet.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/micronix/wowza-api"

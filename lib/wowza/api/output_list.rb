@@ -46,4 +46,12 @@ class Wowza::Api::OutputList < Wowza::Api::Base
   def last
     @outputs.last
   end
+
+  def each(&block)
+    @outputs.each{|o| yield o }
+  end
+
+  def map(&block)
+    @outputs.map{|o| yield o }
+  end
 end

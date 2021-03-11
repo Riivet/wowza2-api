@@ -57,12 +57,20 @@ class Wowza::Api::StreamTargetList < Wowza::Api::Base
     @targets[index]
   end
 
+  def each(&block)
+    @targets.each{|o| yield o }
+  end
+
+  def map(&block)
+    @targets.map{|o| yield o }
+  end
+
   private
 
   def get_target(response)
     case response['type']
     when 'wowza' then
-      Wowza::Api::StreamTarget::Wowza.retrieve(response['id'])
+      Wowza::Api::StreamTarget::Akamai.retrieve(response['id'])
     when 'fastly' then
       Wowza::Api::StreamTarget::Fastly.retrieve(response['id'])
     when 'custom' then
