@@ -51,6 +51,10 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     list.find{|k| k['name'] == 'source' }.dig('url')
   end
 
+  def connection_url
+    "rtmp://#{domain_name}/#{application_name}"
+  end
+
   # TODO
   # 1. update/delete output
   # 2. create, remove, destroy stream_target from output
