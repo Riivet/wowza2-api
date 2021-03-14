@@ -120,10 +120,13 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     @output_list || Wowza::Api::OutputList.new(id, @data['outputs'])
   end
 
-  def update_output
+  def create_output(data)
+    response = post("/transcoders/#{id}/outputs", output: data)
+    if response['output']
+      Wowza::Api::Output.new(id, response['output'])
+    end
   end
 
   def delete_output
   end
-
 end

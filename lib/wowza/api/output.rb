@@ -19,4 +19,16 @@ class Wowza::Api::Output < Wowza::Api::Base
 
   def create(opts={})
   end
+
+  def update(opts={})
+    response = patch("/transcoders/#{@transcoder_id}/outputs/#{id}", output: opts)
+    if response['output']
+      @data = response['output']
+    end
+  end
+
+  def destroy
+    response = delete("/transcoders/#{@transcoder_id}/outputs/#{id}")
+    return true if response
+  end
 end
