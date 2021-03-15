@@ -26,6 +26,13 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     end
   end
 
+  def reload
+    response = get("/transcoders/#{id}")
+    if response['transcoder']
+      @data = response['transcoder']
+    end
+  end
+
   def self.create(opts={})
     data = DEFAULT_OPTIONS.merge(opts)
     response = post('/transcoders', transcoder: data)
