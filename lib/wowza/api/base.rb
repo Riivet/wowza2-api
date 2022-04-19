@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 class Wowza::Api::Base
-  API_BASE = 'https://api.cloud.wowza.com/api/v1.6'
+  API_BASE = 'https://api.cloud.wowza.com/api/v1.7'
 
   attr_reader :data
 
@@ -18,7 +18,7 @@ class Wowza::Api::Base
   private
 
   def self.request(type, endpoint, body = nil)
-    uri = URI("#{API_BASE}/#{endpoint}")
+    uri = URI("#{API_BASE}#{endpoint}")
     request = case type
     when :get
       Net::HTTP::Get.new uri.path
@@ -40,6 +40,10 @@ class Wowza::Api::Base
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       response = http.request(request)
+      puts uri.path
+      puts body
+      puts '88888888'
+      puts response.body
       result = JSON.parse(response.body) if response.body
       if response.code =~ /^2/
         return response.body ? result : true
