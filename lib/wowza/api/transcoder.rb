@@ -26,6 +26,13 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     end
   end
 
+  def reload
+    response = get("/transcoders/#{id}")
+    if response['transcoder']
+      @data = response['transcoder']
+    end
+  end
+
   def self.create(opts={})
     data = DEFAULT_OPTIONS.merge(opts)
     response = post('/transcoders', transcoder: data)
@@ -49,6 +56,10 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
   def rtmp_playback_url
     list = @data.dig('direct_playback_urls', 'rtmp')
     list.find{|k| k['name'] == 'source' }.dig('url')
+  end
+
+  def connection_url
+    "rtmp://#{domain_name}/#{application_name}"
   end
 
   # TODO
@@ -120,10 +131,13 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     @output_list || Wowza::Api::OutputList.new(id, @data['outputs'])
   end
 
-  def update_output
+  def create_output(data)
+    response = post("/transcoders/#{id}/outputs", output: data)
+    if response['output']
+      Wowza::Api::Output.new(id, response['output'])
+    end
   end
 
   def delete_output
   end
-
 end

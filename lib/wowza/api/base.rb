@@ -28,6 +28,8 @@ class Wowza::Api::Base
       Net::HTTP::Put.new uri.path
     when :delete
       Net::HTTP::Delete.new uri.path
+    when :patch
+      Net::HTTP::Patch.new uri.path
     else
       raise "#{type} not found"
     end
@@ -69,6 +71,10 @@ class Wowza::Api::Base
 
   def put(endpoint, body={})
     self.class.request(:put, endpoint, body)
+  end
+
+  def patch(endpoint, body={})
+    self.class.request(:patch, endpoint, body)
   end
 
   def delete(endpoint)

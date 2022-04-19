@@ -23,7 +23,7 @@ class Wowza::Api::StreamTargetList < Wowza::Api::Base
     url = "/transcoders/#{transcoder_id}/outputs/#{output_id}/output_stream_targets/#{stream_target_id}"
     response = delete(url)
     if response
-      @targets.filter!{|k| k.id != stream_target_id}
+      @targets.select!{|k| k.id != stream_target_id}
     else
       return false
     end

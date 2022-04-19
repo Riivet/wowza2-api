@@ -43,6 +43,10 @@ class Wowza::Api::OutputList < Wowza::Api::Base
     @outputs[index]
   end
 
+  def find(id)
+    @outputs.select{|k| k.id == id }.first
+  end
+
   def last
     @outputs.last
   end
