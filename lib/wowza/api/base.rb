@@ -40,10 +40,6 @@ class Wowza::Api::Base
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       response = http.request(request)
-      puts uri.path
-      puts body
-      puts '88888888'
-      puts response.body
       result = JSON.parse(response.body) if response.body
       if response.code =~ /^2/
         return response.body ? result : true
