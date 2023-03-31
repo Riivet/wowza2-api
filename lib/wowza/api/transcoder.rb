@@ -140,4 +140,10 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
 
   def delete_output
   end
+
+  # reset targets
+  def reset_target(output_id, stream_target_id)
+    response = put("/transcoders/#{id}/outputs/#{output_id}/output_stream_targets/#{stream_target_id}/restart")
+    return response
+  end
 end
