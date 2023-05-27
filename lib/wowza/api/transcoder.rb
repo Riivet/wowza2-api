@@ -126,6 +126,13 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     end
   end
 
+  def vod_streams
+    response = get("/transcoders/#{id}/vod_streams")
+    response['vod_streams'].map do |r|
+      Wowza::Api::VodStream.retrieve(r['id'])
+    end
+  end
+
   # Outputs
   def outputs
     @output_list || Wowza::Api::OutputList.new(id, @data['outputs'])
