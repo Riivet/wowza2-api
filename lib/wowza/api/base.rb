@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 class Wowza::Api::Base
-  API_BASE = 'https://api.cloud.wowza.com/api/v1.7'
+  API_BASE = 'https://api.cloud.wowza.com/api/v1.9'
 
   attr_reader :data
 
@@ -34,8 +34,9 @@ class Wowza::Api::Base
       raise "#{type} not found"
     end
 
-    request['wsc-api-key'] = Wowza::Api::configuration.api_key
-    request['wsc-access-key'] = Wowza::Api::configuration.access_key
+    # request['wsc-api-key'] = Wowza::Api::configuration.api_key
+    # request['wsc-access-key'] = Wowza::Api::configuration.access_key
+    request['Authorization'] = "Bearer: #{Wowza::Api::configuration.jwt}"
     request['Content-Type'] = 'application/json'
     body = body.is_a?(Hash) ? body.to_json : body.to_s
     request.body = body if body

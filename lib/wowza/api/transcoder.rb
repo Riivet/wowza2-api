@@ -108,6 +108,29 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     return response.dig('transcoder','state') if response.dig('transcoder')
   end
 
+  def uptimes
+    response = get("/transcoders/#{id}/uptimes")
+    return response.dig('uptimes')
+  end
+
+  def metrics(uptime_id)
+    response = get("/transcoders/#{id}/uptimes/#{uptime_id}/metrics/current")
+    return response.dig('current')
+  end
+
+  def output_target_status
+    uptime = uptimes.select{|k| k['running'] }.last
+    response = metrics(uptime['id'])
+    ret = Hash.new{|h,k| h[k] = {} }
+    response.each do |k,v|
+      if k =~ /stream_target_status/
+        _,_,_,output_id,target_id = k.split('_')
+        ret[target_id][output_id] = v['value']
+      end
+    end
+    return ret
+  end
+
   def stats
     response = get("/transcoders/#{id}/stats")
     ret = {}
