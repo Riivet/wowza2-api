@@ -120,7 +120,7 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
 
   def output_target_status
     uptime = uptimes.select{|k| k['running'] }.last
-    return {} unless uptime
+    return Hash.new{|h,k| h[k] = {}} unless uptime
     response = metrics(uptime['id'])
     ret = Hash.new{|h,k| h[k] = {} }
     response.each do |k,v|
