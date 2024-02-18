@@ -1,5 +1,5 @@
 class Wowza::Api::Configuration
-  attr_accessor :api_key, :access_key, :jwt, :version, :hostname
+  attr_accessor :api_key, :access_key, :jwt, :version, :hostname, :logger, :logger_filter
 
   def initialize
     @api_key    = ENV["WSC_API_KEY"]

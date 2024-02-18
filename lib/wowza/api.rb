@@ -1,3 +1,4 @@
+require 'logger'
 require "wowza/api/version"
 require "wowza/api/base"
 require "wowza/api/transcoder"

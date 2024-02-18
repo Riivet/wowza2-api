@@ -43,6 +43,12 @@ class Wowza::Api::Base
 
     Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
       response = http.request(request)
+
+      uri_regex = Wowza::Api.configuration.logger_filter.is_a?(Hash) ? Wowza::Api.configuration.logger_filter[type] : Wowza::Api.configuration.logger_filter
+      if Wowza::Api.configuration.logger && (Wowza::Api.configuration.logger_filter.nil? || uri.path =~ uri_regex)
+        msg = "\n#{type.upcase} #{uri}\n----------------\n#{body}\n----------------\n#{response.code} #{response.body}\n----------------\n\n"
+        Wowza::Api.configuration.logger.debug(msg)
+      end
       result = JSON.parse(response.body) if response.body
       if response.code =~ /^2/
         return response.body ? result : true
