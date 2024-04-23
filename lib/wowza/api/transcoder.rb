@@ -59,7 +59,12 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
   end
 
   def connection_url
-    "rtmp://#{domain_name}/#{application_name}"
+    case protocol
+    when 'rtmp'
+      "rtmp://#{domain_name}:#{source_port}/#{application_name}"
+    when 'srt'
+      "srt://#{domain_name}:#{source_port}"
+    end
   end
 
   # TODO

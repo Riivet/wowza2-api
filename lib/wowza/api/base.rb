@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 class Wowza::Api::Base
-  API_BASE = 'https://api.cloud.wowza.com/api/v1.9'
+  API_BASE = 'https://api.cloud.wowza.com/api/v1.10'
 
   attr_reader :data
 
