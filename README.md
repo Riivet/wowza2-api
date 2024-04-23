@@ -56,3 +56,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/wowza-api.
+
+Documentation:
+
+https://developer.wowza.com/docs/wowza-video/api/video/current/tag/transcoders/
