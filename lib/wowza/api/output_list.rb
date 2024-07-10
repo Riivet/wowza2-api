@@ -65,4 +65,12 @@ class Wowza::Api::OutputList < Wowza::Api::Base
   def map(&block)
     @outputs.map{|o| yield o }
   end
+
+  def select(&block)
+    @outputs.select{|o| yield o }
+  end
+
+  def find(&block)
+    @outputs.find{|o| yield o}
+  end
 end
