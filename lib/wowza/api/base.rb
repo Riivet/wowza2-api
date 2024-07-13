@@ -72,7 +72,6 @@ class Wowza::Api::Base
   end
 
   def post(endpoint, body)
-    puts body.inspect
     self.class.request(:post, endpoint, body)
   end
 
