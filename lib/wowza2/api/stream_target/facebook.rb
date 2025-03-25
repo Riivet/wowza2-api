@@ -1,4 +1,4 @@
-class Wowza::Api::StreamTarget::Facebook < Wowza::Api::StreamTarget::Base
+class Wowza2::Api::StreamTarget::Facebook < Wowza2::Api::StreamTarget::Base
   def self.list
     response = get('/stream_targets')
     if response['stream_targets']

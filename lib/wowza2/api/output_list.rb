@@ -1,4 +1,4 @@
-class Wowza::Api::OutputList < Wowza::Api::Base
+class Wowza2::Api::OutputList < Wowza2::Api::Base
   DEFAULT_OPTIONS = {
     stream_format: 'audiovideo',
   }
@@ -12,7 +12,7 @@ class Wowza::Api::OutputList < Wowza::Api::Base
     rescue
       @json = outputs
     end
-    @outputs = @json.map{|k| Wowza::Api::Output.new(transcoder_id, k)}
+    @outputs = @json.map{|k| Wowza2::Api::Output.new(transcoder_id, k)}
   end
 
   def create(opts={})
@@ -32,7 +32,7 @@ class Wowza::Api::OutputList < Wowza::Api::Base
 
     response = post("/transcoders/#{@transcoder_id}/outputs", output: data)
     if response['output']
-      output = Wowza::Api::Output.new(@transcoder_id, response['output'])
+      output = Wowza2::Api::Output.new(@transcoder_id, response['output'])
       @outputs.push(output)
       return output
     end

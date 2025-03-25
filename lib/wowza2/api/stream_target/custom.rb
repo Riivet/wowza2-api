@@ -1,4 +1,4 @@
-class Wowza::Api::StreamTarget::Custom < Wowza::Api::StreamTarget::Base
+class Wowza2::Api::StreamTarget::Custom < Wowza2::Api::StreamTarget::Base
   DEFAULT_OPTIONS = {
     provider: 'rtmp'
   }

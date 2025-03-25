@@ -1,4 +1,4 @@
-class Wowza::Api::Recording < Wowza::Api::Base
+class Wowza2::Api::Recording < Wowza2::Api::Base
   def self.list
     response = get('/recordings')
     if response['recordings']

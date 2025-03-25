@@ -1,4 +1,4 @@
-class Wowza::Api::VodStream < Wowza::Api::Base
+class Wowza2::Api::VodStream < Wowza2::Api::Base
   def self.list
     response = get('/vod_streams')
     if response['vod_streams']

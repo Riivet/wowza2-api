@@ -1,4 +1,4 @@
-class Wowza::Api::StreamTarget::Akamai < Wowza::Api::StreamTarget::Base
+class Wowza2::Api::StreamTarget::Akamai < Wowza2::Api::StreamTarget::Base
 
   DEFAULT_OPTIONS = {
     provider: 'akamai_cupertino',

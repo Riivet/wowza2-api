@@ -1,4 +1,4 @@
-class Wowza::Api::Output < Wowza::Api::Base
+class Wowza2::Api::Output < Wowza2::Api::Base
   def initialize(transcoder_id, data)
     @data = data
     @transcoder_id = transcoder_id
@@ -14,7 +14,7 @@ class Wowza::Api::Output < Wowza::Api::Base
 
   def stream_targets
     return @stream_target_list if @stream_target_list
-    Wowza::Api::StreamTargetList.new(transcoder_id, id)
+    Wowza2::Api::StreamTargetList.new(transcoder_id, id)
   end
 
   def create(opts={})

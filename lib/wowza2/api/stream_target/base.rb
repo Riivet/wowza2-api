@@ -1,11 +1,11 @@
-module Wowza::Api
+module Wowza2::Api
   module StreamTarget
     def self.retrieve(id)
       types = [
-        Wowza::Api::StreamTarget::Fastly,
-        Wowza::Api::StreamTarget::Akamai,
-        Wowza::Api::StreamTarget::Custom,
-        Wowza::Api::StreamTarget::Facebook
+        Wowza2::Api::StreamTarget::Fastly,
+        Wowza2::Api::StreamTarget::Akamai,
+        Wowza2::Api::StreamTarget::Custom,
+        Wowza2::Api::StreamTarget::Facebook
       ]
       types.each do |type|
         begin
@@ -17,7 +17,7 @@ module Wowza::Api
       return nil
     end
 
-    class Base < Wowza::Api::Base
+    class Base < Wowza2::Api::Base
       def self.list
         response = get('/stream_targets')
         if response['stream_targets']

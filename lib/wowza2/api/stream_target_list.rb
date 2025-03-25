@@ -1,4 +1,4 @@
-class Wowza::Api::StreamTargetList < Wowza::Api::Base
+class Wowza2::Api::StreamTargetList < Wowza2::Api::Base
   attr_reader :transcoder_id, :output_id
 
   def initialize(transcoder_id, output_id)
@@ -78,13 +78,13 @@ class Wowza::Api::StreamTargetList < Wowza::Api::Base
   def get_target(response)
     case response['type']
     when 'wowza' then
-      Wowza::Api::StreamTarget::Akamai.retrieve(response['id'])
+      Wowza2::Api::StreamTarget::Akamai.retrieve(response['id'])
     when 'fastly' then
-      Wowza::Api::StreamTarget::Fastly.retrieve(response['id'])
+      Wowza2::Api::StreamTarget::Fastly.retrieve(response['id'])
     when 'custom' then
-      Wowza::Api::StreamTarget::Custom.retrieve(response['id'])
+      Wowza2::Api::StreamTarget::Custom.retrieve(response['id'])
     when 'facebook' then
-      Wowza::Api::StreamTarget::Facebook.new(response)
+      Wowza2::Api::StreamTarget::Facebook.new(response)
     end
   end
 end

@@ -1,21 +1,21 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "wowza/api/version"
+require "wowza2/api/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "wowza-api"
-  spec.version       = Wowza::Api::VERSION
+  spec.name          = "wowza-2-api"
+  spec.version       = Wowza2::Api::VERSION
   spec.authors       = ["Ramiro Rodriguez"]
   spec.email         = ["ramiro.rodriguez@gmail.com"]
 
-  spec.summary       = %q{wowza api gem}
-  spec.description   = %q{Allows for riivet to user the wowza api across all microservices that might need it}
+  spec.summary       = %q{Wowza api v2 gem}
+  spec.description   = %q{Allows for riivet to use the wowza v2 api across all microservices that might need it}
   spec.homepage      = "https://riivet.com"
 
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/micronix/wowza-api"
-  spec.metadata["changelog_uri"] = "https://github.com/micronix/wowza-api/changelog.md"
+  spec.metadata["source_code_uri"] = "https://github.com/micronix/wowza2-api"
+  spec.metadata["changelog_uri"] = "https://github.com/micronix/wowza2-api/changelog.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

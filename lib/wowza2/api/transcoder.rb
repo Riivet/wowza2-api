@@ -1,4 +1,4 @@
-class Wowza::Api::Transcoder < Wowza::Api::Base
+class Wowza2::Api::Transcoder < Wowza2::Api::Base
   DEFAULT_OPTIONS = {
     billing_mode: 'pay_as_you_go',
     transcoder_type: 'transcoded',
@@ -42,7 +42,7 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
   end
 
   def update(data={})
-    response = put("/transcoders/#{id}", transcoder: data)
+    response = patch("/transcoders/#{id}", transcoder: data)
     if response['transcoder']
       @data = response['transcoder']
     end
@@ -137,40 +137,42 @@ class Wowza::Api::Transcoder < Wowza::Api::Base
     return ret
   end
 
-  def stats
-    response = get("/transcoders/#{id}/stats")
-    ret = {}
-    if response['transcoder']
-      response['transcoder'].each do |k,v|
-        ret[k] = v.dig('value')
-      end
-      return ret
-    end
-  end
+  # this endpoint doesn't exist in V2 - where are we using it?
+  #
+  #def stats
+  #  response = get("/transcoders/#{id}/stats")
+  #  ret = {}
+  #  if response['transcoder']
+  #    response['transcoder'].each do |k,v|
+  #      ret[k] = v.dig('value')
+  #    end
+  #    return ret
+  #  end
+  #end
 
   def recordings
     response = get("/transcoders/#{id}/recordings")
     response['recordings'].map do |r|
-      Wowza::Api::Recording.retrieve(r['id'])
+      Wowza2::Api::Recording.retrieve(r['id'])
     end
   end
 
   def vod_streams
     response = get("/transcoders/#{id}/vod_streams")
     response['vod_streams'].map do |r|
-      Wowza::Api::VodStream.retrieve(r['id'])
+      Wowza2::Api::VodStream.retrieve(r['id'])
     end
   end
 
   # Outputs
   def outputs
-    @output_list || Wowza::Api::OutputList.new(id, @data['outputs'])
+    @output_list || Wowza2::Api::OutputList.new(id, @data['outputs'])
   end
 
   def create_output(data)
     response = post("/transcoders/#{id}/outputs", output: data)
     if response['output']
-      Wowza::Api::Output.new(id, response['output'])
+      Wowza2::Api::Output.new(id, response['output'])
     end
   end
 
