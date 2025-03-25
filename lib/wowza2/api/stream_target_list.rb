@@ -80,7 +80,7 @@ class Wowza2::Api::StreamTargetList < Wowza2::Api::Base
     when 'wowza' then
       Wowza2::Api::StreamTarget::Akamai.retrieve(response['id'])
     when 'fastly' then
-      Wowza2::Api::StreamTarget::Fastly.retrieve(response['id'])
+      Wowza2::Api::StreamTarget::WowzaCdn.retrieve(response['id'])
     when 'custom' then
       Wowza2::Api::StreamTarget::Custom.retrieve(response['id'])
     when 'facebook' then

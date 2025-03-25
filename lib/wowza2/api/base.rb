@@ -19,7 +19,6 @@ class Wowza2::Api::Base
 
   def self.request(type, endpoint, body = nil)
     uri = URI("#{API_BASE}#{endpoint}")
-    byebug
     request = case type
     when :get
       Net::HTTP::Get.new uri.path

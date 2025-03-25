@@ -6,7 +6,7 @@ require "wowza2/api/recording"
 require "wowza2/api/vod_stream"
 require "wowza2/api/stream_target/base"
 require "wowza2/api/stream_target/akamai"
-require "wowza2/api/stream_target/fastly"
+require "wowza2/api/stream_target/wowza_cdn"
 require "wowza2/api/stream_target/custom"
 require "wowza2/api/stream_target/facebook"
 require 'wowza2/api/output'

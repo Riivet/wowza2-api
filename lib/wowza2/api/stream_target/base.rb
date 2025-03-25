@@ -2,7 +2,7 @@ module Wowza2::Api
   module StreamTarget
     def self.retrieve(id)
       types = [
-        Wowza2::Api::StreamTarget::Fastly,
+        Wowza2::Api::StreamTarget::WowzaCdn,
         Wowza2::Api::StreamTarget::Akamai,
         Wowza2::Api::StreamTarget::Custom,
         Wowza2::Api::StreamTarget::Facebook
