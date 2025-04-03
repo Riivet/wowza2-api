@@ -1,6 +1,6 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "lib/wowza2/api/version"
+require "wowza2/api/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "wowza-2-api"
