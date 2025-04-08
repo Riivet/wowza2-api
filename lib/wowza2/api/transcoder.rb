@@ -42,6 +42,10 @@ class Wowza2::Api::Transcoder < Wowza2::Api::Base
   end
 
   def update(data={})
+    # RTMP and SRT protocols require the 'push' delivery method
+    if ['rtmp', 'srt'].include?(data['protocol'])
+      data['delivery_method'] = 'push'
+    end
     response = patch("/transcoders/#{id}", transcoder: data)
     if response['transcoder']
       @data = response['transcoder']
@@ -137,22 +141,20 @@ class Wowza2::Api::Transcoder < Wowza2::Api::Base
     return ret
   end
 
-  # this endpoint doesn't exist in V2 - where are we using it?
-  #
-  #def stats
-  #  response = get("/transcoders/#{id}/stats")
-  #  ret = {}
-  #  if response['transcoder']
-  #    response['transcoder'].each do |k,v|
-  #      ret[k] = v.dig('value')
-  #    end
-  #    return ret
-  #  end
-  #end
+  def stats
+    response = get("/transcoders/#{id}/stats")
+    ret = {}
+    if response['transcoder']
+      response['transcoder'].each do |k,v|
+        ret[k] = v.dig('value')
+      end
+      return ret
+    end
+  end
 
   def recordings
-    response = get("/transcoders/#{id}/recordings")
-    response['recordings'].map do |r|
+    response = get("/videos?origin_id=#{id}")
+    response['videos'].map do |r|
       Wowza2::Api::Recording.retrieve(r['id'])
     end
   end

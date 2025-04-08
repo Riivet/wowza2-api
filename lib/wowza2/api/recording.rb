@@ -1,20 +1,20 @@
 class Wowza2::Api::Recording < Wowza2::Api::Base
   def self.list
-    response = get('/recordings')
-    if response['recordings']
-      response['recordings'].map{|r| new(r) }
+    response = get('/videos')
+    if response['videos']
+      response['videos'].map{|r| new(r) }
     end
   end
 
   def self.retrieve(id)
-    response = get("/recordings/#{id}")
-    if response['recording']
-      new(response['recording'])
+    response = get("/videos/#{id}")
+    if response['video']
+      new(response['video'])
     end
   end
 
   def destroy
-    response = delete("/recordings/#{id}")
+    response = delete("/videos/#{id}")
     return true if response
   end
 end
