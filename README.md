@@ -4,7 +4,7 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
-Wowza Documentation: https://developer.wowza.com/docs/wowza-video/api/video/v1.10/tag/transcoders/#tag/transcoders/operation/showUptimeMetricsCurrent
+Wowza Documentation: https://developer.wowza.com/docs/wowza-video/api/video/current/overview/
 
 ## Installation
 
